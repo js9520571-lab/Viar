@@ -13,32 +13,55 @@
     }
     .header-section {
       text-align: center;
-      padding: 50px 20px;
+      padding: 60px 20px;
       position: relative;
+      overflow: hidden; /* Keeps animation inside */
+      min-height: 75vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-    .logo-container {
-      margin-bottom: 30px;
+    
+    /* --- ANIMATION CSS --- */
+    .background-animation {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      opacity: 0.4;
+      pointer-events: none; /* Lets you click buttons through the animation */
     }
+
+    /* --- CONTENT CSS --- */
+    .content-layer {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 600px;
+    }
+    .logo-container { margin-bottom: 30px; }
     .logo-text {
       font-size: 3.5rem;
       font-weight: 800;
       letter-spacing: 4px;
       color: #ffffff;
-      text-shadow: 0 0 15px rgba(0, 162, 255, 0.6);
+      text-shadow: 0 0 15px rgba(0, 162, 255, 0.8);
       margin: 10px 0 5px;
     }
     .subtitle {
       font-size: 0.8rem;
-      color: #0055ff;
+      color: #00a2ff;
       letter-spacing: 3px;
       text-transform: uppercase;
       font-weight: 600;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
     }
     .top-nav {
       display: flex;
       justify-content: center;
-      gap: 40px;
+      gap: 30px;
       font-size: 0.85rem;
       font-weight: bold;
       letter-spacing: 1px;
@@ -55,13 +78,9 @@
     .button-container {
       display: flex;
       flex-direction: column;
-      align-items: center;
       gap: 15px;
-      margin-bottom: 60px;
     }
     .action-btn {
-      width: 100%;
-      max-width: 400px;
       padding: 15px 25px;
       border-radius: 30px;
       background-color: #ffffff;
@@ -70,29 +89,19 @@
       font-weight: bold;
       display: flex;
       align-items: center;
-      transition: transform 0.2s, background-color 0.2s;
+      transition: transform 0.2s;
     }
-    .action-btn:hover {
-      background-color: #e0e0e0;
-      transform: scale(1.02);
-    }
-    .btn-icon {
-      margin-right: 20px;
-      font-size: 1.2rem;
-    }
-    .btn-text {
-      flex-grow: 1;
-      text-align: center;
-      margin-right: 35px; /* balances icon space */
-    }
+    .action-btn:hover { transform: scale(1.03); }
+    .btn-icon { margin-right: 20px; font-size: 1.2rem; }
+    .btn-text { flex-grow: 1; text-align: center; margin-right: 35px; }
 
     .bottom-section {
       background-color: #ffffff;
       color: #111111;
-      padding: 80px 20px;
+      padding: 60px 20px;
       display: flex;
       justify-content: center;
-      gap: 60px;
+      gap: 40px;
       flex-wrap: wrap;
     }
     .info-card {
@@ -100,55 +109,75 @@
       background: #f8f9fa;
       padding: 30px;
       border-radius: 12px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
     }
     .info-card h3 {
       margin-top: 0;
-      font-size: 1.2rem;
       border-bottom: 2px solid #eaeaea;
-      padding-bottom: 15px;
-      margin-bottom: 15px;
+      padding-bottom: 10px;
     }
-    .info-card p {
-      line-height: 1.6;
-      color: #555;
-    }
+    .info-card p { color: #555; line-height: 1.6; }
   </style>
 </head>
 <body>
 
   <div class="header-section">
-    <div class="logo-container">
-      <div class="logo-text">VIAR</div>
-      <div class="subtitle">Company To Grow</div>
-    </div>
     
-    <div class="top-nav">
-      <span>HOME</span>
-      <span>ABOUT</span>
-      <span>SERVICES</span>
-      <span>CONTACT</span>
-    </div>
+    <svg class="background-animation" preserveAspectRatio="xMidYMid slice" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="wave1" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#003399" stop-opacity="0.8" />
+          <stop offset="50%" stop-color="#00a2ff" stop-opacity="0.8" />
+          <stop offset="100%" stop-color="#003399" stop-opacity="0.8" />
+        </linearGradient>
+        <linearGradient id="wave2" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#00a2ff" stop-opacity="0.5" />
+          <stop offset="50%" stop-color="#00f2fe" stop-opacity="0.5" />
+          <stop offset="100%" stop-color="#00a2ff" stop-opacity="0.5" />
+        </linearGradient>
+      </defs>
+      <g>
+        <path fill="url(#wave1)" d="M 0 400 L 0 200 Q 250 80, 500 200 T 1000 200 T 1500 200 T 2000 200 T 2500 200 T 3000 200 L 3000 400 Z">
+          <animateTransform attributeName="transform" type="translate" values="0,0; -1000,0" dur="15s" repeatCount="indefinite" />
+        </path>
+        <path fill="url(#wave2)" d="M 0 400 L 0 250 Q 200 150, 400 250 T 800 250 T 1200 250 T 1600 250 T 2000 250 T 2400 250 L 2400 400 Z">
+          <animateTransform attributeName="transform" type="translate" values="0,0; -800,0" dur="10s" repeatCount="indefinite" />
+        </path>
+      </g>
+    </svg>
 
-    <div class="launching-text">LAUNCHING SOON!</div>
+    <div class="content-layer">
+      <div class="logo-container">
+        <div class="logo-text">VIAR</div>
+        <div class="subtitle">Company To Grow</div>
+      </div>
+      
+      <div class="top-nav">
+        <span>HOME</span>
+        <span>ABOUT</span>
+        <span>SERVICES</span>
+        <span>CONTACT</span>
+      </div>
 
-    <div class="button-container">
-      <a href="#" class="action-btn">
-        <span class="btn-icon">✉️</span>
-        <span class="btn-text">Contact</span>
-      </a>
-      <a href="#" class="action-btn">
-        <span class="btn-icon">📞</span>
-        <span class="btn-text">Phone</span>
-      </a>
-      <a href="#" class="action-btn">
-        <span class="btn-icon">👥</span>
-        <span class="btn-text">Facebook</span>
-      </a>
-      <a href="#" class="action-btn">
-        <span class="btn-icon">📸</span>
-        <span class="btn-text">Instagram</span>
-      </a>
+      <div class="launching-text">LAUNCHING SOON!</div>
+
+      <div class="button-container">
+        <a href="#" class="action-btn">
+          <span class="btn-icon">✉️</span>
+          <span class="btn-text">Contact</span>
+        </a>
+        <a href="#" class="action-btn">
+          <span class="btn-icon">📞</span>
+          <span class="btn-text">Phone</span>
+        </a>
+        <a href="#" class="action-btn">
+          <span class="btn-icon">👥</span>
+          <span class="btn-text">Facebook</span>
+        </a>
+        <a href="#" class="action-btn">
+          <span class="btn-icon">📸</span>
+          <span class="btn-text">Instagram</span>
+        </a>
+      </div>
     </div>
   </div>
 
