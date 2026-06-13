@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VIAR - Launching Soon</title>
+  <title>VIAR - Cyberpunk Launch</title>
   <style>
     body {
       margin: 0;
@@ -15,14 +15,15 @@
       text-align: center;
       padding: 60px 20px;
       position: relative;
-      overflow: hidden; /* Keeps animation inside */
-      min-height: 75vh;
+      overflow: hidden;
+      min-height: 85vh;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
     }
     
-    /* --- ANIMATION CSS --- */
+    /* Cyberpunk HUD as background */
     .background-animation {
       position: absolute;
       top: 0;
@@ -30,166 +31,49 @@
       width: 100%;
       height: 100%;
       z-index: 0;
-      opacity: 0.4;
-      pointer-events: none; /* Lets you click buttons through the animation */
+      pointer-events: none;
+      object-fit: cover;
     }
 
-    /* --- CONTENT CSS --- */
-    .content-layer {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      max-width: 600px;
-    }
-    .logo-container { margin-bottom: 30px; }
-    .logo-text {
-      font-size: 3.5rem;
-      font-weight: 800;
-      letter-spacing: 4px;
-      color: #ffffff;
-      text-shadow: 0 0 15px rgba(0, 162, 255, 0.8);
-      margin: 10px 0 5px;
-    }
-    .subtitle {
-      font-size: 0.8rem;
-      color: #00a2ff;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      font-weight: 600;
-      margin-bottom: 30px;
-    }
-    .top-nav {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      font-size: 0.85rem;
-      font-weight: bold;
-      letter-spacing: 1px;
-      margin-bottom: 50px;
-    }
-    .top-nav span { cursor: pointer; transition: color 0.3s; }
-    .top-nav span:hover { color: #00a2ff; }
+    .content-layer { position: relative; z-index: 1; width: 100%; max-width: 600px; }
+    .logo-text { font-size: 3.5rem; font-weight: 800; letter-spacing: 4px; text-shadow: 0 0 15px rgba(0, 162, 255, 0.8); }
+    .subtitle { font-size: 0.8rem; color: #00a2ff; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 30px; }
     
-    .launching-text {
-      font-size: 1.2rem;
-      font-weight: bold;
-      margin-bottom: 25px;
-    }
-    .button-container {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-    .action-btn {
-      padding: 15px 25px;
-      border-radius: 30px;
-      background-color: #ffffff;
-      color: #000000;
-      text-decoration: none;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      transition: transform 0.2s;
-    }
-    .action-btn:hover { transform: scale(1.03); }
-    .btn-icon { margin-right: 20px; font-size: 1.2rem; }
-    .btn-text { flex-grow: 1; text-align: center; margin-right: 35px; }
-
-    .bottom-section {
-      background-color: #ffffff;
-      color: #111111;
-      padding: 60px 20px;
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      flex-wrap: wrap;
-    }
-    .info-card {
-      max-width: 350px;
-      background: #f8f9fa;
-      padding: 30px;
-      border-radius: 12px;
-    }
-    .info-card h3 {
-      margin-top: 0;
-      border-bottom: 2px solid #eaeaea;
-      padding-bottom: 10px;
-    }
-    .info-card p { color: #555; line-height: 1.6; }
+    .button-container { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
+    .action-btn { padding: 15px 25px; border-radius: 30px; background-color: #ffffff; color: #000000; text-decoration: none; font-weight: bold; display: flex; align-items: center; }
+    
+    .bottom-section { background-color: #ffffff; color: #111111; padding: 60px 20px; display: flex; justify-content: center; gap: 40px; }
+    .info-card { max-width: 350px; background: #f8f9fa; padding: 30px; border-radius: 12px; }
   </style>
 </head>
 <body>
 
   <div class="header-section">
-    
-    <svg class="background-animation" preserveAspectRatio="xMidYMid slice" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+    <svg class="background-animation" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <linearGradient id="wave1" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#003399" stop-opacity="0.8" />
-          <stop offset="50%" stop-color="#00a2ff" stop-opacity="0.8" />
-          <stop offset="100%" stop-color="#003399" stop-opacity="0.8" />
-        </linearGradient>
-        <linearGradient id="wave2" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#00a2ff" stop-opacity="0.5" />
-          <stop offset="50%" stop-color="#00f2fe" stop-opacity="0.5" />
-          <stop offset="100%" stop-color="#00a2ff" stop-opacity="0.5" />
-        </linearGradient>
+        <filter id="neon-glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3" result="blur" /><feComposite in="SourceGraphic" in2="blur" operator="over" /></filter>
       </defs>
-      <g>
-        <path fill="url(#wave1)" d="M 0 400 L 0 200 Q 250 80, 500 200 T 1000 200 T 1500 200 T 2000 200 T 2500 200 T 3000 200 L 3000 400 Z">
-          <animateTransform attributeName="transform" type="translate" values="0,0; -1000,0" dur="15s" repeatCount="indefinite" />
-        </path>
-        <path fill="url(#wave2)" d="M 0 400 L 0 250 Q 200 150, 400 250 T 800 250 T 1200 250 T 1600 250 T 2000 250 T 2400 250 L 2400 400 Z">
-          <animateTransform attributeName="transform" type="translate" values="0,0; -800,0" dur="10s" repeatCount="indefinite" />
-        </path>
+      <rect width="100%" height="100%" fill="#090a0f"/>
+      <line x1="0" y1="0" x2="800" y2="0" stroke="#38ef7d" stroke-width="2" opacity="0.4"><animate attributeName="y1" values="20; 380; 20" dur="6s" repeatCount="indefinite" /><animate attributeName="y2" values="20; 380; 20" dur="6s" repeatCount="indefinite" /></line>
+      <g transform="translate(400, 200)">
+        <circle r="120" stroke="#00f2fe" stroke-width="2" fill="none" stroke-dasharray="10 20 60 10" filter="url(#neon-glow)"><animateTransform attributeName="transform" type="rotate" values="360; 0" dur="20s" repeatCount="indefinite" /></circle>
+        <circle r="80" stroke="#ff0055" stroke-width="3" fill="none" stroke-dasharray="2 8" opacity="0.6"><animateTransform attributeName="transform" type="rotate" values="360; 0" dur="15s" repeatCount="indefinite" /></circle>
+        <polygon points="0,-45 39,22.5 -39,22.5" stroke="#38ef7d" stroke-width="1.5" fill="none" opacity="0.4"><animateTransform attributeName="transform" type="rotate" values="0; 360" dur="8s" repeatCount="indefinite" /></polygon>
       </g>
     </svg>
 
     <div class="content-layer">
-      <div class="logo-container">
-        <div class="logo-text">VIAR</div>
-        <div class="subtitle">Company To Grow</div>
-      </div>
-      
-      <div class="top-nav">
-        <span>HOME</span>
-        <span>ABOUT</span>
-        <span>SERVICES</span>
-        <span>CONTACT</span>
-      </div>
-
-      <div class="launching-text">LAUNCHING SOON!</div>
-
+      <div class="logo-text">VIAR</div>
+      <div class="subtitle">Company To Grow</div>
       <div class="button-container">
-        <a href="#" class="action-btn">
-          <span class="btn-icon">✉️</span>
-          <span class="btn-text">Contact</span>
-        </a>
-        <a href="#" class="action-btn">
-          <span class="btn-icon">📞</span>
-          <span class="btn-text">Phone</span>
-        </a>
-        <a href="#" class="action-btn">
-          <span class="btn-icon">👥</span>
-          <span class="btn-text">Facebook</span>
-        </a>
-        <a href="#" class="action-btn">
-          <span class="btn-icon">📸</span>
-          <span class="btn-text">Instagram</span>
-        </a>
+        <a href="#" class="action-btn">Contact</a>
+        <a href="#" class="action-btn">Phone</a>
       </div>
     </div>
   </div>
 
   <div class="bottom-section">
-    <div class="info-card">
-      <h3>Educational Solutions</h3>
-      <p>VIAR provides custom educational solutions that transform technical concepts into engaging simulations, ensuring a deeper understanding for users.</p>
-    </div>
-    <div class="info-card">
-      <h3>Data-Driven Tools</h3>
-      <p>We specialize in data-driven interactive tools, leveraging modern data visualization libraries to bring your company's metrics to life.</p>
-    </div>
+    <div class="info-card"><h3>Services</h3><p>Custom simulations and data-driven interactive tools.</p></div>
   </div>
 
 </body>
